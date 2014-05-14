@@ -2,15 +2,16 @@
 
 Ohai.plugin(:VagrantNet) do
   provides 'ipaddress'
-  depends "#{os}::network"
-  depends "#{os}::virtualization"
-  depends 'passwd'
+  depends 'ipaddress', 'network/interfaces'
+  depends 'virtualization/system', 'etc/passwd'
 
-  if virtualization['system'] == 'vbox'
-    if etc['passwd'].any? { |k, v| k == 'vagrant' }
-      if network['interfaces']['eth1']
-        network['interfaces']['eth1']['addresses'].each do |ip, params|
-          ipaddress(ip) if params['family'] == ('inet')
+  collect_data(:default) do
+    if virtualization['system'] == 'vbox'
+      if etc['passwd'].any? { |k, v| k == 'vagrant' }
+        if network['interfaces']['eth1']
+          network['interfaces']['eth1']['addresses'].each do |ip, params|
+            ipaddress(ip) if params['family'] == ('inet')
+          end
         end
       end
     end
