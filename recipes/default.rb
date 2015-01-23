@@ -32,14 +32,14 @@ directory PLUGIN_PATH do
   recursive true
 end.run_action(:create)
 
-cookbook_file "#{File.join(PLUGIN_PATH, 'README.md')}" do
+cookbook_file File.join(PLUGIN_PATH, 'README.md') do
   source 'README.md'
   owner 'root'
   group 'root'
   mode 0755
 end
 
-cf = cookbook_file "#{File.join(PLUGIN_PATH, 'vagrant-net.rb')}" do
+cf = cookbook_file File.join(PLUGIN_PATH, 'vagrant-net.rb') do
   source "vagrant-net#{FILE_MODIFIER}.rb"
   owner 'root'
   group 'root'
