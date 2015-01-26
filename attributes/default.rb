@@ -3,6 +3,7 @@
 # Attribute:: default
 #
 # Copyright 2010, Opscode, Inc
+# Copyright 2014, PagerDuty, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +19,4 @@
 #
 
 # FHS location would be /var/lib/chef/ohai_plugins or similar.
-default["vagrant-ohai"]["plugin_path"] = "/etc/chef/vagrant_ohai_plugins"
+default['vagrant-ohai']['plugin_path'] = '/etc/chef/vagrant_ohai_plugins'
